@@ -87,14 +87,18 @@ const editProfile = {
                   </div>
                   <div class="signup-form-row">
                       <!-- Row 4 -->
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                           <label class="signup-form-label">About yourself</label>
                           <textarea type="text" class="signup-form-control form-control"  rows="3" v-model="profileData.about" placeholder="I am a student."></textarea>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4" style="margin-left:80px;">
+                      <img :src="profileData.user_image" alt="User Image" class="img-fluid" style="max-height: 200px; max-width: 200px;">
+                      </div>
+                      <div class="col-md-3" >
                         <label class="signup-form-label">Image</label>
                         <input type="file" class="signup-form-control" placeholder="Image" @change="handleImageChange">
                     </div>
+                      
                   </div>
                           <div class="signup-form-row">
                               <div class="col">
