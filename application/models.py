@@ -27,6 +27,7 @@ class StudentDetails(db.Model):
     __tablename__ = "studentdetails"
     sd_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_image = db.Column(db.String(255), nullable=True)
     roll_no = db.Column(db.String, nullable=False, unique=True)
     current_status = db.Column(db.String, nullable=True)
     select_your_course = db.Column(db.String, nullable=True)
@@ -47,7 +48,8 @@ class Courses(db.Model):
     enrolled_this_term = db.Column(db.Integer, nullable=True)
     enrolled_so_far = db.Column(db.Integer, nullable=True)
     course_credit = db.Column(db.Integer, nullable=False)
-    course_description = db.Column(db.String(255), nullable=False)
+    course_type = db.Column(db.String(80), nullable=False)
+    course_description = db.Column(db.String, nullable=False)
     teacher = db.Column(db.String(80), nullable=False)
     pre_req1 = db.Column(db.String(80), nullable=False)
     pre_req2 = db.Column(db.String(80), nullable=False)

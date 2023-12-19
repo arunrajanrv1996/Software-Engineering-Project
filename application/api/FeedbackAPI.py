@@ -265,7 +265,7 @@ class FeedbackAPI(Resource):
                 error_code="FB011",
                 error_message="feedback is required",
             )
-        fbd= Feedback.query.filter(and_(Feedback.roll_no==roll_no, Feedback.feedback==feedback)).first()
+        fbd= Feedback.query.filter(and_(Feedback.roll_no==roll_no, Feedback.course_id==course_id, Feedback.feedback==feedback)).first()
         if fbd:
             raise NotGivenError(
                 status_code=400,
@@ -286,5 +286,8 @@ class FeedbackAPI(Resource):
             feedback=feedback,
         )
         db.session.add(fb)
+        db.session.commit()
+        course=Courses.query.filter_by(course_id=course_id).first()
+        course.toughness=(course.toughness+int(toughness))/2
         db.session.commit()
         return jsonify({"message": "Feedback added successfully"})
