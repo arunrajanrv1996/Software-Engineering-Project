@@ -136,7 +136,7 @@ def recommend_courses_based_on_toughness(student, count):
     stud = StudentDetails.query.filter_by(user_id=current_user.id).first()
     if stud:
         interest = stud.interest.lower()
-    courses = Courses.query.filter_by(course_description=interest).all()
+    courses = Courses.query.filter_by(course_type=interest).all()
     stu_courses = StudentCourseDetails.query.filter_by(roll_no=student.roll_no).all()
     courses_left = [c for c in courses if all(sc.course_id != c.course_id or sc.grade == "U" for sc in stu_courses)]
     

@@ -45,9 +45,10 @@ const editcoursepage = {
                 <input v-model="course.course_description" id="editcourseContent" name="editcourseContent" rows="8" class="editcourse-textarea" required></input>
               </div>
               <div class="col-md-6">
-                <label for="editcoursePrerequisites" class="editcourse-label">Prerequisite 1</label>
-                <input v-model="course.pre_req1" type="text" id="editcoursePrerequisites" name="editcoursePrerequisites" class="editcourse-input" required>
+                <label for="editcoursetype" class="editcourse-label">Course Type</label>
+                <input v-model="course.course_type" type="text" id="editcourseType" name="editcourseType" class="editcourse-input" required>
               </div>
+              
             </div>
 
             <div class="row">
@@ -56,9 +57,10 @@ const editcoursepage = {
                 <input v-model="course.toughness" type="text" id="editcourseToughness" name="editcourseToughness" class="editcourse-input" required>
               </div>
               <div class="col-md-6">
-                <label for="editcoursePrerequisites" class="editcourse-label">Prerequisite 2</label>
-                <input v-model="course.pre_req2" type="text" id="editcoursePrerequisites" name="editcoursePrerequisites" class="editcourse-input" required>
+                <label for="editcoursePrerequisites" class="editcourse-label">Prerequisite 1</label>
+                <input v-model="course.pre_req1" type="text" id="editcoursePrerequisites" name="editcoursePrerequisites" class="editcourse-input" required>
               </div>
+              
               
             </div>
 
@@ -67,7 +69,10 @@ const editcoursepage = {
                 <label for="editfees" class="editcourse-label">Fees</label>
                 <input v-model="course.fees" type="text" id="editfees" name="editfees" class="editcourse-input" required>
               </div>
-              <!-- Add more pairs of input fields as needed -->
+              <div class="col-md-6">
+                <label for="editcoursePrerequisites" class="editcourse-label">Prerequisite 2</label>
+                <input v-model="course.pre_req2" type="text" id="editcoursePrerequisites" name="editcoursePrerequisites" class="editcourse-input" required>
+              </div>
             </div>
 
           </div>

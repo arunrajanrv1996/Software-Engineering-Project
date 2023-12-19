@@ -34,6 +34,7 @@ course_parse.add_argument("enrolled_this_term")
 course_parse.add_argument("enrolled_so_far")
 course_parse.add_argument("course_credit")
 course_parse.add_argument("course_description")
+course_parse.add_argument("course_type")
 course_parse.add_argument("teacher")
 course_parse.add_argument("pre_req1")
 course_parse.add_argument("pre_req2")
@@ -51,6 +52,7 @@ def course_to_json(course):
         "enrolled_so_far": course.enrolled_so_far,
         "course_credit": course.course_credit,
         "course_description": course.course_description,
+        "course_type": course.course_type, 
         "teacher": course.teacher,
         "pre_req1": course.pre_req1,
         "pre_req2": course.pre_req2,
@@ -82,6 +84,7 @@ class CoursesAPI(Resource):
         enrolled_so_far = args.get("enrolled_so_far")
         course_credit = args.get("course_credit")
         course_description = args.get("course_description")
+        course_type = args.get("course_type")
         teacher = args.get("teacher")
         pre_req1 = args.get("pre_req1")
         pre_req2 = args.get("pre_req2")
@@ -130,6 +133,13 @@ class CoursesAPI(Resource):
                 error_code="C007",
                 error_message="course_description is required",
             )
+        if course_type is None:
+            raise NotGivenError(
+                status_code=400,
+                error_code="C007",
+                error_message="course_type is required",
+            )
+        
         if teacher is None: 
             raise NotGivenError(
                 status_code=400,
@@ -189,6 +199,7 @@ class CoursesAPI(Resource):
                 enrolled_so_far=enrolled_so_far,
                 course_credit=course_credit,
                 course_description=course_description,
+                course_type=course_type,
                 teacher=teacher,
                 pre_req1=pre_req1,
                 pre_req2=pre_req2,
@@ -229,6 +240,7 @@ class CoursesAPI(Resource):
         enrolled_so_far = args.get("enrolled_so_far")
         course_credit = args.get("course_credit")
         course_description = args.get("course_description")
+        course_type = args.get("course_type")
         teacher = args.get("teacher")
         pre_req1 = args.get("pre_req1")
         pre_req2 = args.get("pre_req2")
@@ -283,6 +295,12 @@ class CoursesAPI(Resource):
                 error_code="C007",
                 error_message="course_description is required",
             )
+        if course_type is None:
+            raise NotGivenError(
+                status_code=400,
+                error_code="C007",
+                error_message="course_type is required",
+            )
         if teacher is None: 
             raise NotGivenError(
                 status_code=400,
@@ -335,6 +353,7 @@ class CoursesAPI(Resource):
             cs.enrolled_so_far = enrolled_so_far
             cs.course_credit = course_credit
             cs.course_description = course_description
+            cs.course_type = course_type
             cs.teacher = teacher
             cs.pre_req1 = pre_req1
             cs.pre_req2 = pre_req2

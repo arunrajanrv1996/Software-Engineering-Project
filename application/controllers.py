@@ -18,6 +18,7 @@ def course_to_json(course):
         "enrolled_so_far": course.enrolled_so_far,
         "course_credit": course.course_credit,
         "course_description": course.course_description,
+        "course_type": course.course_type,
         "teacher": course.teacher,
         "pre_req1": course.pre_req1,
         "pre_req2": course.pre_req2,
@@ -72,7 +73,7 @@ def usercourses():
         if stud.interest is None:
             return jsonify([])
         interest = stud.interest.lower() 
-        courses = Courses.query.filter_by(course_description=interest).all()
+        courses = Courses.query.filter_by(course_type=interest).all()
         
         if courses:
             cs=[course_to_json(i) for i in courses]
