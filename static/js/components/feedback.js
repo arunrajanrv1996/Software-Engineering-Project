@@ -4,14 +4,14 @@ const feedback = {
   template: `
       <div>
         <navbar />
+        <form @submit.prevent="submitFeedback" class="fb-feedback-form">
+        <h2 class="fb-title">Feedback Form: {{ subject }}</h2>
         <div class="alert alert-success" v-if="showmessage">
                     <p>{{ showmessage }}</p>
         </div>
         <div class="alert alert-danger" v-if="errormessage">
                     <p>{{ errormessage }}</p>
         </div>
-        <form @submit.prevent="submitFeedback" class="fb-feedback-form">
-        <h2 class="fb-title">Feedback Form: {{ subject }}</h2>
         <div class="fb-form-columns">
           <div class="fb-form-column">
             <label for="teacher" class="fb-label">Instructor:</label>
@@ -77,7 +77,6 @@ const feedback = {
   },
   methods: {
     submitFeedback() {
-      console.log(this.feedback);
       // Implement your feedback submission logic here
       const token = localStorage.getItem("auth_token");
       fetch("/api/feedback", {

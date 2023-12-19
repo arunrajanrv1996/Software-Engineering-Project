@@ -4,3 +4,5 @@ wsl_env
 **/.pytest_cache/
 **/.vscode/
 .env
+db_directory/
+database.sqlite3

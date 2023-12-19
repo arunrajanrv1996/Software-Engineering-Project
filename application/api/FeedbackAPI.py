@@ -176,7 +176,7 @@ class FeedbackAPI(Resource):
         else:
             raise NotFoundError(status_code=404)
         
-    @marshal_with(feedback_fields)
+
     @roles_required('student')
     @auth_required('token')
     def post(self):

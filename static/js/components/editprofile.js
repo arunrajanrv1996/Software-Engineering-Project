@@ -8,7 +8,7 @@ const editProfile = {
           <div class="signup-form-header text-center">
           <h2>Edit Profile</h2>
           </div>
-                  <form class = "signup-form">
+                  <form class = "signup-form" @submit.prevent="submitEditProfile">
                   <div class="alert alert-success" v-if="showmessage">
                       <p>{{ showmessage }}</p>
                   </div>
@@ -97,7 +97,7 @@ const editProfile = {
                   </div>
                           <div class="signup-form-row">
                               <div class="col">
-                                  <button type="submit" class="btn signup-btn-next" @click="editProfile">Submit</button>
+                                  <button type="submit" class="btn signup-btn-next">Submit</button>
                                   <button type="button" class="btn signup-btn-cancel" @click="cancelupdatepassword">Cancel</button>
                               </div>
                           </div>
@@ -317,7 +317,7 @@ const editProfile = {
 
       return `${year}-${month}-${day}`;
     },
-    editProfile() {
+    submitEditProfile() {
       fetch(`/api/studentdetails/${this.profileData.sd_id}`, {
         method: "PUT",
         headers: {
@@ -405,8 +405,6 @@ const editProfile = {
         });
     },
     submitCompletedCourses() {
-      console.log("completed courses", this.completedCourses);
-      // make a post method to /completedcourses with this.completedCourses and then route to /profile
       if (Object.keys(this.completedCourses).length === 0) {
         this.errorcmessage = "Please select a course";
         setTimeout(() => {
