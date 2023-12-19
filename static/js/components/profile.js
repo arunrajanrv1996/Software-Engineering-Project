@@ -7,7 +7,7 @@ const profile = {
         <div class="profile-container">
         <div class="profile-left-panel">
           <div class="profile-picture">
-          <img src="static/js/pfp.jpg" alt="profile picture">
+          <img :src="profileData.user_image" alt="profile picture">
           </div>
           <div class="profile-info">
             <p>Name: {{ profileData.user_name }}</p>

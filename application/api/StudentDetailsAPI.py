@@ -14,6 +14,7 @@ StudentDetails_fields = {
     "user_id": fields.Integer,
     "roll_no": fields.String,
     "current_status": fields.String,
+    "user_image": fields.String,
     "select_your_course": fields.String,
     "commit_per_week": fields.Integer,
     "budget_per_term": fields.Integer,
@@ -29,6 +30,7 @@ def studentdetails_to_json(studentdetails,user):
         "user_name": user.username,
         "email": user.email,
         "roll_no": studentdetails.roll_no,
+        "user_image": studentdetails.user_image,
         "current_status": studentdetails.current_status,
         "select_your_course": studentdetails.select_your_course,
         "commit_per_week": studentdetails.commit_per_week,
@@ -43,6 +45,7 @@ StudentDetails_parse = reqparse.RequestParser()
 StudentDetails_parse.add_argument("sd_id")
 StudentDetails_parse.add_argument("user_id")
 StudentDetails_parse.add_argument("roll_no")
+StudentDetails_parse.add_argument("user_image")
 StudentDetails_parse.add_argument("current_status")
 StudentDetails_parse.add_argument("select_your_course")
 StudentDetails_parse.add_argument("commit_per_week")
@@ -73,6 +76,7 @@ class StudentDetailsAPI(Resource):
         args = StudentDetails_parse.parse_args()
         user_id = current_user.id
         roll_no = StudentDetails.query.filter_by(user_id=user_id).first().roll_no
+        user_image = args.get("user_image", None)
         current_status = args.get("current_status")
         select_your_course = args.get("select_your_course")
         commit_per_week = args.get("commit_per_week")
@@ -161,6 +165,7 @@ class StudentDetailsAPI(Resource):
             sd = StudentDetails(
                 user_id=user_id,
                 roll_no=roll_no,
+                user_image=user_image,
                 current_status=current_status,
                 select_your_course=select_your_course,
                 commit_per_week=commit_per_week,
@@ -176,6 +181,7 @@ class StudentDetailsAPI(Resource):
                 "sd_id": sd.sd_id,
                 "user_id": sd.user_id,
                 "roll_no": sd.roll_no,
+                "user_image": sd.user_image,
                 "current_status": sd.current_status,
                 "select_your_course": sd.select_your_course,
                 "commit_per_week": sd.commit_per_week,
@@ -205,6 +211,7 @@ class StudentDetailsAPI(Resource):
         args = StudentDetails_parse.parse_args()
         user_id = current_user.id
         roll_no = StudentDetails.query.filter_by(user_id=user_id).first().roll_no
+        user_image = args.get("user_image", None)
         current_status = args.get("current_status")
         select_your_course = args.get("select_your_course")
         commit_per_week = args.get("commit_per_week")
@@ -279,6 +286,7 @@ class StudentDetailsAPI(Resource):
         if sd:
             sd.user_id=user_id
             sd.roll_no=roll_no
+            sd.user_image=user_image
             sd.current_status=current_status
             sd.select_your_course=select_your_course
             sd.commit_per_week=commit_per_week

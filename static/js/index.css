@@ -1054,12 +1054,13 @@ body {
 }
 
 .profile-left-panel {
-  width: 27%;
+  width: 350px;
   background: #fff;
   padding: 20px;
   font-family: Arial, sans-serif;
   border-radius: 10px;
   margin-left: 5%;
+  flex-shrink: 0;
 }
 
 .profile-left-panel .profile-picture {
@@ -1069,7 +1070,10 @@ body {
 }
 
 .profile-left-panel .profile-picture img {
-  border-radius: 10px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .profile-left-panel .info p {
@@ -1078,7 +1082,6 @@ body {
 }
 
 .profile-lorem-textbox {
-  /* background: #f4f4f4; */
   padding: 0px 15px;
   margin-bottom: 30px;
   border-radius: 5px;

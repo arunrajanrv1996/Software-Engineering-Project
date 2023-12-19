@@ -92,8 +92,9 @@ const editProfile = {
                           <textarea type="text" class="signup-form-control form-control"  rows="3" v-model="profileData.about" placeholder="I am a student."></textarea>
                       </div>
                       <div class="col-md-4">
-                          <!-- Leave this column empty for spacing -->
-                      </div>
+                        <label class="signup-form-label">Image</label>
+                        <input type="file" class="signup-form-control" placeholder="Image" @change="handleImageChange">
+                    </div>
                   </div>
                           <div class="signup-form-row">
                               <div class="col">
@@ -306,6 +307,17 @@ const editProfile = {
     this.fetchCompletedCourses();
   },
   methods: {
+    handleImageChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          // Set the base64-encoded image string in the profileData
+          this.profileData.user_image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    },
     cancelupdatepassword() {
       this.$router.push("/profile");
     },
