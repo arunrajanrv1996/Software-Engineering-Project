@@ -1,0 +1,6 @@
+venv
+wsl_env
+**/__pycache__/
+**/.pytest_cache/
+**/.vscode/
+.env
