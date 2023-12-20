@@ -71,7 +71,8 @@ def usercourses():
     stud = StudentDetails.query.filter_by(user_id=user_id).first()
     if stud:
         if stud.interest is None:
-            return jsonify([])
+            courses = Courses.query.all()
+            return jsonify([course_to_json(course) for course in courses])
         interest = stud.interest.lower() 
         courses = Courses.query.filter_by(course_type=interest).all()
         
