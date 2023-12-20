@@ -180,6 +180,7 @@ const home = {
           }
         })
         .then((data) => {
+          this.fetchrecommendationdata();
           this.fetchSavedRecommendations();
         })
         .catch((error) => {
